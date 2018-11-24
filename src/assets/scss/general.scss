@@ -1,0 +1,40 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-image: url('./assets/images/background.jpg');
+  background-size: cover;
+  margin: 0;
+}
+
+.app {
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);
+  font-family: Roboto;
+}
+
+.container {
+  margin: auto;
+  max-width: 1200px;
+}
+
+.content {
+  background: #fff;
+  display: flex;
+  padding: 10px;
+
+  .left-section {
+    flex: 25%;
+  }
+
+  .right-section {
+    border: 1px solid #bbb;
+    flex: 75%;
+    margin-left: 10px;
+  }
+}
+
+button:focus,
+input:focus {
+  outline: 0;
+}
