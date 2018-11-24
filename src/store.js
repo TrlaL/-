@@ -5,15 +5,11 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    cart: [],
-    currentCatalogId: 0
+    cart: []
   },
   getters: {
     cart (state) {
       return state.cart
-    },
-    currentCatalogId (state) {
-      return state.currentCatalogId
     }
   },
   mutations: {
@@ -25,9 +21,6 @@ export default new Vuex.Store({
       if (state.cart.indexOf(id) === -1) {
         state.cart.splice(index, 1)
       }
-    },
-    SET_CURRENT_CATALOG_ID (state, id) {
-      state.currentCatalogId = id
     }
   }
 })

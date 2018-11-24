@@ -24,13 +24,18 @@ body {
   padding: 10px;
 
   .left-section {
-    flex: 25%;
+    flex: 22%;
   }
 
   .right-section {
     border: 1px solid #bbb;
-    flex: 75%;
+    flex: 78%;
     margin-left: 10px;
+  }
+
+  .main-title {
+    background: #ddd;
+    padding: 10px;
   }
 }
 

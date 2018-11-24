@@ -42,7 +42,7 @@ export default {
 }
 
 .title {
-  background: #eee;
+  background: #ddd;
   border: 1px solid #bbb;
   font-weight: 500;
   padding: 10px;

@@ -1,5 +1,6 @@
 <template>
   <div class="catalog">
+    <div class="main-title">{{ catalog.name }}</div>
     <CatalogList class="list" :items="items" />
   </div>
 </template>
@@ -12,22 +13,14 @@ export default {
     CatalogList
   },
   computed: {
+    catalog () {
+      return this.$catalogs.find(catalog => catalog.id == this.id)
+    },
     id () {
       return this.$route.params.id
     },
     items () {
       return this.$knifes.filter(knife => knife.catalog_id == this.id)
-    }
-  },
-  afterRouteUpdate () {
-    this.setCurrentCatalog()
-  },
-  created () {
-    this.setCurrentCatalog()
-  },
-  methods: {
-    setCurrentCatalog () {
-      this.$store.commit('SET_CURRENT_CATALOG_ID', this.id)
     }
   }
 }
