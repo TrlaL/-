@@ -41,8 +41,14 @@
 .section {
   color: #fff;
   display: flex;
+  flex: 1;
   flex-direction: column;
   font-size: 14px;
+  margin-right: 100px;
+
+  &:last-child {
+    margin: 0;
+  }
 
   div {
     border-bottom: 1px solid #666;
@@ -53,6 +59,7 @@
 
   a {
     color: #aaa;
+    font-size: 12px;
     line-height: 20px;
     text-decoration: none;
   }

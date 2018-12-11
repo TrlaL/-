@@ -4,7 +4,7 @@
       <CartItem class="item" v-for="(item, i) in items" :key="i" :item="item" />
     </div>
     <div class="empty" v-else>
-      <i class="fas fa-shopping-cart"></i>Корзина пуста
+      <i class="fas fa-shopping-cart"></i> Корзина пуста
     </div>
   </div>
 </template>

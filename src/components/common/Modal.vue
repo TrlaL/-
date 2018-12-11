@@ -1,6 +1,6 @@
 <template>
   <transition name="fade">
-    <div class="modal" v-if="isPaid">
+    <div class="modal" v-if="isModalVisible">
       <div class="blackout" @click="close"></div>
       <div class="box">
         <i class="close fas fa-times" @click="close"></i>
@@ -19,14 +19,14 @@ export default {
     title: { default: 'Modal Window', type: String }
   },
   computed: {
-    isPaid () {
-      return this.$store.getters.isPaid
+    isModalVisible () {
+      return this.$store.getters.isModalVisible
     }
   },
   methods: {
     close () {
-      this.$store.commit('SET_PAID_STATUS', false)
-      this.$store.commit('CLEAR_CART')
+      this.$emit('close')
+      this.$store.commit('SET_MODAL_VISIBLE', false)
     }
   }
 }
@@ -71,8 +71,8 @@ export default {
   cursor: pointer;
   font-size: 20px;
   position: absolute;
-  right: 15px;
-  top: 15px;
+  right: 20px;
+  top: 20px;
 }
 
 .header {

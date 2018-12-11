@@ -4,17 +4,19 @@
     <Menu />
     <div class="content">
       <Section class="left-section" />
-      <router-view class="right-section" />
+      <transition mode="out-in" name="fade">
+        <router-view class="right-section" />
+      </transition>
     </div>
     <Footer />
   </div>
 </template>
 
 <script>
-import Header from './components/common/Header'
-import Menu from './components/common/Menu'
-import Section from './components/common/Section'
-import Footer from './components/common/Footer'
+import Footer from '@/components/common/Footer'
+import Header from '@/components/common/Header'
+import Menu from '@/components/common/Menu'
+import Section from '@/components/common/Section'
 
 export default {
   components: {
@@ -22,6 +24,15 @@ export default {
     Menu,
     Section,
     Footer
+  },
+  created () {
+    this.$store.commit('SET_JUMPS', localStorage.jumps || 0)
+  },
+  watch: {
+    '$route' () {
+      this.$store.commit('INC_JUMPS')
+      localStorage.jumps = this.$store.getters.jumps
+    }
   }
 }
 </script>

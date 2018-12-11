@@ -70,6 +70,7 @@ export default {
   },
   methods: {
     pay () {
+      if (!this.isAdded) this.$store.commit('ADD_CART_ITEM', this.item)
       this.$router.push({ name: 'cart' })
     },
     toggle () {

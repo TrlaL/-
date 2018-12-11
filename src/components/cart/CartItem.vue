@@ -2,10 +2,13 @@
   <div class="cart-item">
     <img class="image" :src="item.image">
     <div class="content">
-      <div class="name">{{ item.name }}</div>
+      <div class="name">
+        <div>{{ item.name }}</div>
+        <div>{{ item.params.producer.value }}</div>
+      </div>
       <Counter class="counter" v-model="item.count" @input="changeItem" />
       <div class="total">{{ total }} руб.</div>
-      <button class="remove" @click="removeItem">Удалить</button>
+      <div class="remove fas fa-times" @click="removeItem"></div>
     </div>
   </div>
 </template>
@@ -58,11 +61,16 @@ export default {
     flex: 4;
     font-size: 18px;
     font-weight: 400;
+
+    div:last-child {
+      color: #777;
+      font-size: 15px;
+    }
   }
 
   .counter {
     display: flex;
-    flex: 3;
+    flex: 2;
     justify-content: center;
   }
 
@@ -73,12 +81,10 @@ export default {
   }
 
   .remove {
-    background: #fff;
-    border: 2px solid #333;
-    color: #111;
     cursor: pointer;
+    font-size: 21px;
     flex: 1;
-    font: inherit;
+    text-align: center;
   }
 }
 </style>

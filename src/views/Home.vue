@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <Modal title="Оповещение">Вы успешно оплатили товар на сумму <b>{{ totalPrice }}</b> руб. Ожидайте, когда посылка поступит в ваше почтовое отделение.</Modal>
+    <Modal title="Оповещение" @close="close">Вы успешно оплатили товар на сумму <b>{{ totalPrice }}</b> руб. Ожидайте, когда посылка поступит в ваше почтовое отделение.</Modal>
     <div class="main-title">Главная страница</div>
     <div class="text">
       <h3>ИНТЕРНЕТ МАГАЗИН НОЖЕЙ</h3>
@@ -27,6 +27,11 @@ export default {
     },
     totalPrice () {
       return this.prices.reduce((prev, current) => prev + current, 0).toLocaleString()
+    }
+  },
+  methods: {
+    close () {
+      this.$store.commit('CLEAR_CART')
     }
   }
 }

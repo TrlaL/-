@@ -6,13 +6,15 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     cart: [],
-    isPaid: false,
+    isModalVisible: false,
+    jumps: 0,
     newItemsDate: 7 * 86400 * 1000
   },
   getters: {
     cart: (state) => state.cart,
     cartItem: (state) => (id) => state.cart.find(item => item.id === id),
-    isPaid: (state) => state.isPaid,
+    jumps: (state) => state.jumps,
+    isModalVisible: (state) => state.isModalVisible,
     newItemsDate: (state) => state.newItemsDate
   },
   mutations: {
@@ -27,11 +29,17 @@ export default new Vuex.Store({
         if (item.id === params.id) state.count = params.count
       })
     },
+    INC_JUMPS (state) {
+      state.jumps++
+    },
     REMOVE_CART_ITEM (state, id) {
       state.cart = state.cart.filter(item => item.id !== id)
     },
-    SET_PAID_STATUS (state, status) {
-      state.isPaid = status
+    SET_JUMPS (state, value) {
+      state.jumps = value
+    },
+    SET_MODAL_VISIBLE (state, visible) {
+      state.isModalVisible = visible
     }
   }
 })

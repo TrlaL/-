@@ -2,8 +2,10 @@
   <div class="catalog-item">
     <img class="image" :src="item.image" @click="go">
     <div class="section">
-      <div class="name">{{ item.name }}</div>
-      <div class="producer">{{ item.params.producer.value }}</div>
+      <div class="main">
+        <div class="name">{{ item.name }}</div>
+        <div class="producer">{{ item.params.producer.value }}</div>
+      </div>
       <div class="controls">
         <div class="price">{{ item.price.toLocaleString() }} р.</div>
         <button class="add" :class="className" @click="toggle">
@@ -49,6 +51,8 @@ export default {
 <style lang="scss" scoped>
 .catalog-item {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
 }
 
 .image {
@@ -60,7 +64,15 @@ export default {
 }
 
 .section {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-between;
   padding: 10px;
+
+  .main {
+    flex: 1;
+  }
 }
 
 .name {
