@@ -20,7 +20,7 @@ export default {
   },
   methods: {
     go (id) {
-      this.$router.push(`/catalog/${id}`)
+      this.$router.push({ name: 'catalog', params: { id })
     },
     selected (id) {
       return {

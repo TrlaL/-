@@ -13,9 +13,7 @@
 import CartItem from './CartItem'
 
 export default {
-  components: {
-    CartItem
-  },
+  components: { CartItem },
   props: {
     items: { required: true, type: Array }
   }
