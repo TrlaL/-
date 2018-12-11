@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <Modal title="Оповещение">Вы успешно оплатили товар на сумму <b>{{ totalPrice }}</b> руб. Ожидайте, когда посылка поступит в ваше почтовое отделение.</Modal>
     <div class="main-title">Главная страница</div>
     <div class="text">
       <h3>ИНТЕРНЕТ МАГАЗИН НОЖЕЙ</h3>
@@ -11,6 +12,25 @@
     </div>
   </div>
 </template>
+
+<script>
+import Modal from '@/components/common/Modal'
+
+export default {
+  components: { Modal },
+  computed: {
+    cart () {
+      return this.$store.getters.cart
+    },
+    prices () {
+      return this.cart.map(item => item.price * item.count)
+    },
+    totalPrice () {
+      return this.prices.reduce((prev, current) => prev + current, 0).toLocaleString()
+    }
+  }
+}
+</script>
 
 <style lang="scss" scoped>
 .text {

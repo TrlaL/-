@@ -10,10 +10,7 @@ import Catalog from './Catalog'
 import Reviews from './Reviews'
 
 export default {
-  components: {
-    Catalog,
-    Reviews
-  }
+  components: { Catalog, Reviews }
 }
 </script>
 

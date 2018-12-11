@@ -10,17 +10,9 @@
       <div class="params">
         <div class="header">Информация о ноже:</div>
         <div class="table">
-          <div class="row">
-            <div>Производитель</div>
-            <div>{{ item.producer }}</div>
-          </div>
-          <div class="row">
-            <div>Тип стали</div>
-            <div>{{ item.steel }}</div>
-          </div>
-          <div class="row">
-            <div>Общая длина (мм)</div>
-            <div>{{ item.total_length }}</div>
+          <div class="row" v-for="(param, i) in item.params" :key="i">
+            <div>{{ param.name }}</div>
+            <div>{{ param.value }}</div>
           </div>
         </div>
         <div class="row price">
@@ -29,11 +21,11 @@
         </div>
       </div>
       <div class="buttons">
-        <button @click="add">
+        <button :class="className" @click="toggle">
           <i class="fas" :class="buttonIcon"></i>
           {{ buttonText }}
         </button>
-        <button>
+        <button @click="pay">
           <i class="far fa-credit-card"></i>
           Купить
         </button>
@@ -44,10 +36,14 @@
 
 <script>
 import Stars from '@/components/common/Stars'
+import knifes from '@/api/knifes'
 
 export default {
-  components: {
-    Stars
+  components: { Stars },
+  data () {
+    return {
+      knifes
+    }
   },
   computed: {
     cart () {
@@ -59,20 +55,26 @@ export default {
     buttonIcon () {
       return this.isAdded ? 'fa-check' : 'fa-shopping-cart'
     },
-    id () {
-      return this.$route.params.id
+    className () {
+      return { added: this.isAdded }
     },
-    item () {
-      return this.$knifes.find(knife => knife.id == this.id)
+    id () {
+      return parseInt(this.$route.params.id)
     },
     isAdded () {
-      return this.cart.includes(this.item.id)
+      return this.$store.getters.cartItem(this.item.id)
+    },
+    item () {
+      return this.knifes.find(knife => knife.id === this.id)
     }
   },
   methods: {
-    add () {
-      if (this.isAdded) return
-      this.$store.commit('ADD_CART_ITEM', this.item.id)
+    pay () {
+      this.$router.push({ name: 'cart' })
+    },
+    toggle () {
+      if (this.isAdded) return this.$store.commit('REMOVE_CART_ITEM', this.item.id)
+      this.$store.commit('ADD_CART_ITEM', this.item)
     }
   }
 }
@@ -158,6 +160,11 @@ export default {
     &:last-child {
       border-right: 2px solid #333;
     }
+  }
+
+  .added {
+    background: #444;
+    color: #fff;
   }
 }
 </style>

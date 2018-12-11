@@ -6,17 +6,14 @@
 
 <script>
 export default {
+  props: {
+    value: { default: 0, type: Number }
+  },
   methods: {
     className (i) {
       return {
         active: i <= this.value
       }
-    }
-  },
-  props: {
-    value: {
-      default: 0,
-      type: Number
     }
   }
 }

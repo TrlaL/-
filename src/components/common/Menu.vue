@@ -1,13 +1,30 @@
 <template>
   <div class="menu">
-    <router-link class="item" to="/">Главная</router-link>
-    <router-link class="item" to="/">Новинки</router-link>
-    <router-link class="item" to="/">Хиты</router-link>
-    <router-link class="item" to="/">Отзывы</router-link>
-    <router-link class="item" to="/">Контакты</router-link>
-    <router-link class="item" to="/">О нас</router-link>
+    <a class="item" v-for="(link, name) in links" :key="name" @click="go(name)">{{ link }}</a>
   </div>
 </template>
+
+<script>
+export default {
+  data () {
+    return {
+      links: {
+        'home': 'Главная',
+        'new-items': 'Новинки',
+        'hits': 'Хиты',
+        'reviews': 'Отзывы',
+        'contacts': 'Контакты',
+        'about': 'О Нас'
+      }
+    }
+  },
+  methods: {
+    go (name) {
+      this.$router.push({ name })
+    }
+  }
+}
+</script>
 
 <style lang="scss" scoped>
 .menu {

@@ -8,9 +8,7 @@
           <div class="date">18.11.1996</div>
         </div>
         <Stars :value="1" />
-        <div class="review">
-          Хуета
-        </div>
+        <div class="review">Хуета</div>
       </div>
       <div class="item">
         <div class="info">
@@ -18,9 +16,7 @@
           <div class="date">18.11.1998</div>
         </div>
         <Stars :value="1" />
-        <div class="review">
-          +1
-        </div>
+        <div class="review">+1</div>
       </div>
     </div>
   </div>
@@ -30,17 +26,11 @@
 import Stars from './Stars'
 
 export default {
-  components: {
-    Stars
-  }
+  components: { Stars }
 }
 </script>
 
 <style lang="scss" scoped>
-.catalog {
-  font-size: 15px;
-}
-
 .title {
   background: #ddd;
   border: 1px solid #bbb;

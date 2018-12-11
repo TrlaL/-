@@ -2,17 +2,13 @@
   <div class="header">
     <div class="top-line"></div>
     <div class="section">
-      <div class="logo">
+      <div class="logo" @click="go('home')">
         <div>TrialKnifes.RU</div>
         <div>магазин ножей</div>
       </div>
-      <div class="search">
-        <input type="text">
-        <i class="fas fa-search"></i>
-      </div>
-      <div class="cart">
+      <div class="cart" @click="go('cart')">
         <i class="fas fa-shopping-cart"></i>
-        {{ cart. length }} товаров - {{ total }} р.
+        {{ totalCount }} товаров - {{ totalPrice }} р.
       </div>
     </div>
   </div>
@@ -20,24 +16,26 @@
 
 <script>
 export default {
-  data () {
-    return {
-      total: 0
-    }
-  },
   computed: {
     cart () {
       return this.$store.getters.cart
     },
-    knifes () {
-      return this.$knifes.filter(knife => this.cart.includes(knife.id))
+    counts () {
+      return this.cart.map(item => item.count)
+    },
+    totalCount () {
+      return this.counts.reduce((prev, current) => prev + current, 0)
+    },
+    prices () {
+      return this.cart.map(item => item.price * item.count)
+    },
+    totalPrice () {
+      return this.prices.reduce((prev, current) => prev + current, 0)
     }
   },
-  watch: {
-    knifes (item) {
-      let total = 0
-      item.forEach(item => total += item.price)
-      this.total = total
+  methods: {
+    go (name) {
+      this.$router.push({ name })
     }
   }
 }
@@ -63,6 +61,7 @@ export default {
 }
 
 .logo {
+  cursor: pointer;
   font-size: 32px;
   font-weight: 450;
 
@@ -75,23 +74,6 @@ export default {
     font-size: 14px;
     font-weight: 500;
     text-align: right;
-  }
-}
-
-.search {
-  display: flex;
-
-  input {
-    border: 0;
-    border-bottom: 1px solid #777;
-    padding: 8px 0 8px 0;
-    width: 100%;
-  }
-
-  i {
-    border-bottom: 1px solid #777;
-    cursor: pointer;
-    padding: 8px;
   }
 }
 

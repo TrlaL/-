@@ -2,25 +2,29 @@
   <div class="catalog">
     <div class="title">Каталог</div>
     <div class="items">
-      <div
-        class="item"
-        v-for="(catalog, i) in $catalogs"
-        :key="i"
-      >
-        <router-link :to="`/catalog/${catalog.id}`">
-          <i class="fas fa-caret-right"></i> {{ catalog.name }}
-        </router-link>
+      <div class="item" v-for="(catalog, i) in catalogs" :key="i" @click="go(catalog.id)">
+        <i class="fas fa-caret-right"></i> {{ catalog.name }}
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import catalogs from '@/api/catalogs'
+
 export default {
+  data () {
+    return {
+      catalogs
+    }
+  },
   methods: {
+    go (id) {
+      this.$router.push(`/catalog/${id}`)
+    },
     selected (id) {
       return {
-        selected: id == this.currentCatalogId
+        selected: id === this.currentCatalogId
       }
     }
   }
@@ -48,6 +52,7 @@ export default {
   border: 1px solid #bbb;
   border-top: 0;
   cursor: pointer;
+  padding: 8px;
 
   &:hover {
     background: #eee;

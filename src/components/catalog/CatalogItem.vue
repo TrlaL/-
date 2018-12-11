@@ -1,14 +1,12 @@
 <template>
   <div class="catalog-item">
-    <router-link :to="`/knife/${item.id}`">
-      <img class="image" :src="item.image">
-    </router-link>
+    <img class="image" :src="item.image" @click="go">
     <div class="section">
       <div class="name">{{ item.name }}</div>
-      <div class="producer">{{ item.producer }}</div>
+      <div class="producer">{{ item.params.producer.value }}</div>
       <div class="controls">
         <div class="price">{{ item.price.toLocaleString() }} р.</div>
-        <button class="add" @click="add">
+        <button class="add" :class="className" @click="toggle">
           <i class="fas" :class="buttonIcon"></i>
           {{ buttonText }}
         </button>
@@ -19,30 +17,30 @@
 
 <script>
 export default {
+  props: {
+    item: { required: true, type: Object }
+  },
   computed: {
-    cart () {
-      return this.$store.getters.cart
-    },
     buttonText () {
       return this.isAdded ? 'Добавлен' : 'В корзину'
     },
     buttonIcon () {
       return this.isAdded ? 'fa-check' : 'fa-shopping-cart'
     },
+    className () {
+      return { added: this.isAdded }
+    },
     isAdded () {
-      return this.cart.includes(this.item.id)
+      return this.$store.getters.cartItem(this.item.id)
     }
   },
   methods: {
-    add () {
-      if (this.isAdded) return
-      this.$store.commit('ADD_CART_ITEM', this.item.id)
-    }
-  },
-  props: {
-    item: {
-      required: true,
-      type: Object
+    go () {
+      this.$router.push(`/knife/${this.item.id}`)
+    },
+    toggle () {
+      if (this.isAdded) return this.$store.commit('REMOVE_CART_ITEM', this.item.id)
+      this.$store.commit('ADD_CART_ITEM', this.item)
     }
   }
 }
@@ -55,6 +53,7 @@ export default {
 
 .image {
   background: #eee;
+  cursor: pointer;
   height: 200px;
   object-fit: contain;
   width: 100%;
@@ -93,6 +92,11 @@ export default {
     cursor: pointer;
     font: inherit;
     padding: 7px 15px 7px 15px;
+  }
+
+  .added {
+    background: #444;
+    color: #fff;
   }
 }
 </style>

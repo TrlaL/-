@@ -8,14 +8,9 @@
 import CatalogItem from './CatalogItem'
 
 export default {
-  components: {
-    CatalogItem
-  },
+  components: { CatalogItem },
   props: {
-    items: {
-      required: true,
-      type: Array
-    }
+    items: { required: true, type: Array }
   }
 }
 </script>

@@ -4,8 +4,9 @@
 
 body {
   background-image: url('./assets/images/background.jpg');
-  background-size: cover;
+  background-size: fill;
   margin: 0;
+  overflow-y: scroll;
 }
 
 .app {
@@ -42,4 +43,19 @@ body {
 button:focus,
 input:focus {
   outline: 0;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.25s;
+}
+
+.fade-enter-to,
+.fade-leave {
+  opacity: 1;
 }
