@@ -38,7 +38,7 @@ export default {
   },
   methods: {
     go () {
-      this.$router.push({ name: 'knife', params: { id: this.item.id })
+      this.$router.push({ name: 'knife', params: { id: this.item.id } })
     },
     toggle () {
       if (this.isAdded) return this.$store.commit('REMOVE_CART_ITEM', this.item.id)
