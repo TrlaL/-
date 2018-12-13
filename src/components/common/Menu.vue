@@ -12,7 +12,6 @@ export default {
         'home': 'Главная',
         'new-items': 'Новинки',
         'hits': 'Хиты',
-        'reviews': 'Отзывы',
         'contacts': 'Контакты',
         'about': 'О Нас'
       }

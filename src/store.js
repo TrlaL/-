@@ -8,18 +8,23 @@ export default new Vuex.Store({
     cart: [],
     isModalVisible: false,
     jumps: 0,
-    newItemsDate: 7 * 86400 * 1000
+    newItemsDate: 7 * 86400 * 1000,
+    reviews: []
   },
   getters: {
     cart: (state) => state.cart,
     cartItem: (state) => (id) => state.cart.find(item => item.id === id),
     jumps: (state) => state.jumps,
     isModalVisible: (state) => state.isModalVisible,
-    newItemsDate: (state) => state.newItemsDate
+    newItemsDate: (state) => state.newItemsDate,
+    reviews: (state) => state.reviews
   },
   mutations: {
     ADD_CART_ITEM (state, item) {
       state.cart.push(item)
+    },
+    ADD_REVIEW (state, review) {
+      state.reviews.push(review)
     },
     CLEAR_CART (state) {
       state.cart = []
