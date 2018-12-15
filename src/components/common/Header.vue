@@ -44,6 +44,7 @@ export default {
 <style lang="scss" scoped>
 .header {
   background: #fff;
+  user-select: none;
 }
 
 .top-line {
@@ -67,6 +68,7 @@ export default {
 
   div:first-child {
     color: #333;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   }
 
   div:last-child {
@@ -83,5 +85,12 @@ export default {
   cursor: pointer;
   font-size: 14px;
   padding: 10px 20px 10px 20px;
+
+  &:hover {
+    background: #555;
+    border-color: #333;
+    color: #fff;
+    transition: all 0.3s;
+  }
 }
 </style>

@@ -120,14 +120,22 @@ export default {
   }
 
   input {
+    background: #fff;
     border: 0;
     border-bottom: 1px solid #aaa;
     font: inherit;
     padding: 10px 0 10px 0;
   }
 
+  input:focus {
+    border-color: #888;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+    transition: all 0.5s;
+  }
+
   .error {
-    border-color: #E12828;
+    border-color: #E12828 !important;
+    box-shadow: none !important;
   }
 }
 

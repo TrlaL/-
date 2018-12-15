@@ -31,6 +31,7 @@ export default {
   color: #fff;
   display: flex;
   font-size: 16px;
+  user-select: none;
 }
 
 .item {
