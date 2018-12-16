@@ -5,7 +5,7 @@
     <div class="content">
       <Section class="left-section" />
       <transition mode="out-in" name="fade">
-        <router-view class="right-section" />
+        <router-view class="right-section" :key="$route.path" />
       </transition>
     </div>
     <Footer />

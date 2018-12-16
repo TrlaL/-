@@ -102,10 +102,12 @@ export default {
   display: flex;
   justify-content: space-between;
   margin-top: 10px;
+  white-space: nowrap;
 
   .price {
     font-size: 20px;
     font-weight: 600;
+    margin-right: 5px;
   }
 
   .add {
