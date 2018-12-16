@@ -1,19 +1,22 @@
 <template>
   <div class="new-items">
     <div class="main-title">Новинки</div>
-    <CatalogList :items="newItems" />
+    <CatalogList v-if="isLoaded" :items="newItems" />
+    <Loading v-else />
   </div>
 </template>
 
 <script>
 import CatalogList from '@/components/catalog/CatalogList'
-import knifes from '@/api/knifes'
+import Loading from '@/components/common/Loading'
+import { getKnifes } from '@/api/knifes'
 
 export default {
-  components: { CatalogList },
+  components: { CatalogList, Loading },
   data () {
     return {
-      knifes
+      knifes: [],
+      isLoaded: false
     }
   },
   computed: {
@@ -26,6 +29,15 @@ export default {
     },
     newItemsDate () {
       return this.$store.getters.newItemsDate
+    }
+  },
+  created () {
+    this.getKnifes()
+  },
+  methods: {
+    async getKnifes () {
+      this.knifes = await getKnifes()
+      this.isLoaded = true
     }
   }
 }

@@ -85,6 +85,11 @@ export default {
     font-size: 21px;
     flex: 1;
     text-align: center;
+
+    &:hover {
+      color: #333;
+      transition: all 0.3s;
+    }
   }
 }
 </style>

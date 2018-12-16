@@ -30,12 +30,12 @@ export default {
   background: #333;
   color: #fff;
   display: flex;
-  font-size: 16px;
+  font-size: 15px;
   user-select: none;
 }
 
 .item {
-  border-right: 1px solid #777;
+  border-right: 1px solid #999;
   color: #fff;
   cursor: pointer;
   flex: 1;
@@ -45,7 +45,8 @@ export default {
   text-decoration: none;
 
   &:hover {
-    background: #444;
+    background: #555;
+    transition: all 0.4s;
   }
 }
 </style>

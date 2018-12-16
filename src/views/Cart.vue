@@ -127,12 +127,6 @@ export default {
     padding: 10px 0 10px 0;
   }
 
-  input:focus {
-    border-color: #888;
-    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
-    transition: all 0.5s;
-  }
-
   .error {
     border-color: #E12828 !important;
     box-shadow: none !important;
@@ -149,5 +143,10 @@ export default {
   margin: 1px;
   padding: 10px;
   width: 100%;
+
+  &:hover {
+    background: #25B3DC;
+    transition: all 0.3s;
+  }
 }
 </style>

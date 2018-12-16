@@ -1,22 +1,9 @@
-export default [
-  {
-    'id': 1,
-    'name': 'Складные ножи'
-  },
-  {
-    'id': 2,
-    'name': 'Охотничьи и туристические ножи'
-  },
-  {
-    'id': 3,
-    'name': 'Ножи для выживания'
-  },
-  {
-    'id': 4,
-    'name': 'Военные ножи'
-  },
-  {
-    'id': 5,
-    'name': 'Кухонные ножи'
-  }
-]
+import catalogs from '@/data/catalogs'
+
+export function getCatalogs () {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(catalogs)
+    }, 500)
+  })
+}

@@ -36,13 +36,13 @@
 
 <script>
 import Stars from '@/components/common/Stars'
-import knifes from '@/api/knifes'
+import { getKnifes } from '@/api/knifes'
 
 export default {
   components: { Stars },
   data () {
     return {
-      knifes
+      knifes: []
     }
   },
   computed: {
@@ -65,10 +65,16 @@ export default {
       return this.$store.getters.cartItem(this.item.id)
     },
     item () {
-      return this.knifes.find(knife => knife.id === this.id)
+      return this.knifes.find(knife => knife.id === this.id) || {}
     }
   },
+  created () {
+    this.getKnifes()
+  },
   methods: {
+    async getKnifes () {
+      this.knifes = await getKnifes(0)
+    },
     pay () {
       if (!this.isAdded) this.$store.commit('ADD_CART_ITEM', this.item)
       this.$router.push({ name: 'cart' })

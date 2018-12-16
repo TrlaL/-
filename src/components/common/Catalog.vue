@@ -1,31 +1,37 @@
 <template>
   <div class="catalog">
     <div class="title">Каталог</div>
-    <div class="items">
+    <div class="items" v-if="isLoaded">
       <div class="item" v-for="(catalog, i) in catalogs" :key="i" @click="go(catalog.id)">
         <i class="fas fa-caret-right"></i> {{ catalog.name }}
       </div>
     </div>
+    <Loading v-else />
   </div>
 </template>
 
 <script>
-import catalogs from '@/api/catalogs'
+import Loading from '@/components/common/Loading'
+import { getCatalogs } from '@/api/catalogs'
 
 export default {
+  components: { Loading },
   data () {
     return {
-      catalogs
+      catalogs: [],
+      isLoaded: false
     }
   },
+  created () {
+    this.getCatalogs()
+  },
   methods: {
+    async getCatalogs () {
+      this.catalogs = await getCatalogs()
+      this.isLoaded = true
+    },
     go (id) {
       this.$router.push({ name: 'catalog', params: { id } })
-    },
-    selected (id) {
-      return {
-        selected: id === this.currentCatalogId
-      }
     }
   }
 }
@@ -33,12 +39,13 @@ export default {
 
 <style lang="scss" scoped>
 .catalog {
+  border: 1px solid #bbb;
   font-size: 15px;
 }
 
 .title {
   background: #ddd;
-  border: 1px solid #bbb;
+  border-bottom: 1px solid #bbb;
   font-weight: 500;
   padding: 10px;
   text-align: center;
@@ -49,13 +56,16 @@ export default {
 }
 
 .item {
-  border: 1px solid #bbb;
-  border-top: 0;
+  border-bottom: 1px solid #bbb;
   cursor: pointer;
   padding: 8px;
 
   &:hover {
-    background: #eee;
+    background: #ddd;
+  }
+
+  &:last-child {
+    border: 0;
   }
 
   a {

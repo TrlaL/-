@@ -104,10 +104,15 @@ export default {
     cursor: pointer;
     font: inherit;
     padding: 7px 15px 7px 15px;
+
+    &:hover {
+      background: #aaa;
+      transition: all 0.3s;
+    }
   }
 
   .added {
-    background: #444;
+    background: #444 !important;
     color: #fff;
   }
 }
