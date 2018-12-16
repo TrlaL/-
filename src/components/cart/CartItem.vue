@@ -1,6 +1,7 @@
 <template>
   <div class="cart-item">
-    <img class="image" :src="item.image">
+    <img class="image" v-show="isImageLoaded" :src="item.image" @load="isImageLoaded = true">
+    <Loading class="image" size="big" v-show="!isImageLoaded" />
     <div class="content">
       <div class="name">
         <div>{{ item.name }}</div>
@@ -15,11 +16,17 @@
 
 <script>
 import Counter from '@/components/common/Counter'
+import Loading from '@/components/common/Loading'
 
 export default {
-  components: { Counter },
+  components: { Counter, Loading },
   props: {
     item: { required: true, type: Object }
+  },
+  data () {
+    return {
+      isImageLoaded: false
+    }
   },
   computed: {
     total () {
@@ -39,12 +46,15 @@ export default {
 
 <style lang="scss" scoped>
 .cart-item {
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  border: 1px solid #ccc;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   display: flex;
   height: 100px;
 }
 
 .image {
+  background: #eee;
+  border-right: 1px solid #ddd;
   height: 100%;
   object-fit: fill;
   width: 200px;

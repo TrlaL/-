@@ -8,7 +8,7 @@
       </div>
       <div class="cart" @click="go('cart')">
         <i class="fas fa-shopping-cart"></i>
-        {{ totalCount }} товаров - {{ totalPrice }} р.
+        {{ totalCount }} {{ word }} - {{ totalPrice }} р.
       </div>
     </div>
   </div>
@@ -31,6 +31,10 @@ export default {
     },
     totalPrice () {
       return this.prices.reduce((prev, current) => prev + current, 0)
+    },
+    word () {
+      let lastDigit = Math.abs(this.totalCount % 10)
+      return lastDigit === 1 ? 'товар' : lastDigit >= 2 && lastDigit <= 4 ? 'товара' : 'товаров'
     }
   },
   methods: {

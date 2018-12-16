@@ -2,7 +2,7 @@
   <div class="hits">
     <div class="main-title">Хиты</div>
     <CatalogList v-if="isLoaded" :items="hits" />
-    <Loading v-else />
+    <Loading size="big" v-else />
   </div>
 </template>
 

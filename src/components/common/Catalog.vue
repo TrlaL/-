@@ -6,7 +6,7 @@
         <i class="fas fa-caret-right"></i> {{ catalog.name }}
       </div>
     </div>
-    <Loading v-else />
+    <Loading text="загрузка..." v-else />
   </div>
 </template>
 

@@ -1,6 +1,7 @@
 <template>
   <div class="catalog-item">
-    <img class="image" :src="item.image" @click="go">
+    <img class="image" v-show="isImageLoaded" :src="item.image" @click="go" @load="isImageLoaded = true">
+    <Loading class="image" size="big" v-show="!isImageLoaded" />
     <div class="section">
       <div class="main">
         <div class="name">{{ item.name }}</div>
@@ -18,9 +19,17 @@
 </template>
 
 <script>
+import Loading from '@/components/common/Loading'
+
 export default {
+  components: { Loading },
   props: {
     item: { required: true, type: Object }
+  },
+  data () {
+    return {
+      isImageLoaded: false
+    }
   },
   computed: {
     buttonText () {
@@ -50,13 +59,15 @@ export default {
 
 <style lang="scss" scoped>
 .catalog-item {
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  border: 1px solid #bbb;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
 }
 
 .image {
   background: #eee;
+  border-bottom: 1px solid #ccc;
   cursor: pointer;
   height: 200px;
   object-fit: contain;
@@ -104,11 +115,6 @@ export default {
     cursor: pointer;
     font: inherit;
     padding: 7px 15px 7px 15px;
-
-    &:hover {
-      background: #aaa;
-      transition: all 0.3s;
-    }
   }
 
   .added {

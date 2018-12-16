@@ -2,7 +2,7 @@
   <div class="catalog">
     <div class="main-title">{{ catalog ? catalog.name : 'Загрузка...' }}</div>
     <CatalogList class="list" v-if="isLoaded" :items="items" />
-    <Loading v-else />
+    <Loading size="big" v-else />
   </div>
 </template>
 
